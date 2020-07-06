@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="has-background-grey-darker" lang="en">
 <?php session_start(); ?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,10 +23,11 @@
     </style>
 </head>
 <script>
-    function sendMessage(){
+    function sendMessage() {
 
     }
 </script>
+
 <body style="height: 100vh">
     <div class="columns" style="margin-left: 1%; margin-right: 1%; margin-top: 0.5%">
         <div class="column is-one-quarter">
@@ -45,18 +47,23 @@
                 </div>
                 <hr style="margin-right: 6px; margin-left: 6px; background-color: black">
                 <h3 class="title is-3 has-text-centered has-text-warning" style="margin-bottom: 15px">Session ID</h3>
-                <h5 class="title is-5 has-text-centered has-text-danger has-background-white" style="margin-bottom: 15px"><i>{chat-id}</i></h5>
+                <h5 class="title is-5 has-text-centered has-text-danger has-background-white"
+                    style="margin-bottom: 15px">
+                    <i><?php echo($_SESSION["chatroom_room_id"]); ?></i>
+                </h5>
             </div>
         </div>
         <div class="column" style="overflow-y: auto; overflow-x: auto;">
             <div class="box has-background-grey" style="height: 96vh; box-shadow: 0 0 5px 5px red;">
-                <div class="box has-background-black has-text-success" style="height: 92%; overflow-x: auto; clear: both">
+                <div class="box has-background-black has-text-success"
+                    style="height: 92%; overflow-x: auto; clear: both">
 
                     <div class="columns" style="margin-bottom: -25px; margin-top: -25px;">
                         <div class="column"></div>
                         <div class="column">
                             <i style="font-size: 12px;">{recipient-other}</i>
-                            <p style="background-color: #444; border-radius: 5px 5px; padding:.25em; text-align: right; font-family: monospace;">
+                            <p
+                                style="background-color: #444; border-radius: 5px 5px; padding:.25em; text-align: right; font-family: monospace;">
                                 ini adalah sebuah pesan dari dia
                             </p>
                         </div>

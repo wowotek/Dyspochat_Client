@@ -29,8 +29,7 @@ session_start();
                     <div class="field">
                         <label class="label has-text-warning is-4">Chat Session-ID</label>
                         <div class="control has-icons-left has-icons-right">
-                            <input class="input has-background-grey has-text-white" type="text" minlength="6" maxlength="16"
-                                size="16" pattern="[A-Za-z0-9]{6,16}" name="chat_id">
+                            <input class="input has-background-grey has-text-white" name="room_id">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-key"></i>
                             </span>
