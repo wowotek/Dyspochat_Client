@@ -47,10 +47,7 @@
                 </div>
                 <hr style="margin-right: 6px; margin-left: 6px; background-color: black">
                 <h3 class="title is-3 has-text-centered has-text-warning" style="margin-bottom: 15px">Session ID</h3>
-                <h5 class="title is-5 has-text-centered has-text-danger has-background-white"
-                    style="margin-bottom: 15px">
-                    <i><?php echo($_SESSION["chatroom_room_id"]); ?></i>
-                </h5>
+                <p class="has-background-white has-text-centered" style="text-align: center"><i><?php echo($_SESSION["chatroom_room_id"]); ?></i></p>
             </div>
         </div>
         <div class="column" style="overflow-y: auto; overflow-x: auto;">
@@ -62,8 +59,7 @@
                         <div class="column"></div>
                         <div class="column">
                             <i style="font-size: 12px;">{recipient-other}</i>
-                            <p
-                                style="background-color: #444; border-radius: 5px 5px; padding:.25em; text-align: right; font-family: monospace;">
+                            <p style="background-color: #444; border-radius: 5px 5px; padding:.25em; text-align: right; font-family: monospace;">
                                 ini adalah sebuah pesan dari dia
                             </p>
                         </div>

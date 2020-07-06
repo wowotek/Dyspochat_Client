@@ -18,8 +18,8 @@ curl_close ($ch);
 
 var_dump($server_output);
 if($server_output["act_status"]) {
-    $_SESSION["chatroom_id"] = $server_output["chatroom"]["id"];
-    $_SESSION["chatroom_room_id"] = $server_output["chatroom"]["room_id"];
+    $_SESSION["chatroom_id"] = $server_output["data"]["chatroom"]["id"];
+    $_SESSION["chatroom_room_id"] = $server_output["data"]["chatroom"]["room_id"];
     header('Location: /chat.php');
     exit();
 }
