@@ -16,6 +16,7 @@ $server_output = json_decode(curl_exec($ch), true);
 
 curl_close ($ch);
 
+var_dump($server_output);
 $recipient = $server_output["recipients"]
 
 ?>
