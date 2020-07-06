@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html class="has-background-grey-darker" lang="en">
-
+<?php session_start(); ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatroom</title>
 
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script defer src="jquery.js"></script>
+    <script defer src="fontawesome.js"></script>
+    <link rel="stylesheet" href="bulma.css">
     <style>
         * {
             word-wrap: break-word;
@@ -36,7 +37,7 @@
                 <h3 class="title is-3 has-text-centered has-text-warning" style="margin-bottom: 15px">Recipients</h3>
                 <div class="box" style="margin-bottom: 15px; margin-right: 10px; margin-left: 10px; padding: 3%">
                     <span class="icon is-small is-left" style="margin-right: 5px;"><i class="fas fa-user"></i></span>
-                    {recipient-self}
+                    <?php echo($_SESSION["user_name"]); ?>
                 </div>
                 <div class="box" style="margin-right: 10px; margin-left: 10px; padding: 3%">
                     <span class="icon is-small is-left" style="margin-right: 5px;"><i class="fas fa-user"></i></span>

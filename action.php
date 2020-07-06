@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
+    <title>Dashboard</title>
 
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script defer src="jquery.js"></script>
+    <script defer src="fontawesome.js"></script>
+    <link rel="stylesheet" href="bulma.css">
 </head>
+
+<?php 
+session_start();
+?>
 
 <body style="margin-left: 10%; margin-right: 10%;">
     <div class="columns" style="transform: translate(0%, 110%)">
@@ -18,7 +23,9 @@
                     Join Chat
                 </h2>
                 <hr>
-                <form action="join" method="POST">
+                <?php
+                ?>
+                <form action="/chat_join.php" method="POST">
                     <div class="field">
                         <label class="label has-text-warning is-4">Chat Session-ID</label>
                         <div class="control has-icons-left has-icons-right">
@@ -33,7 +40,7 @@
         
                     <div class="field has-addons has-addons-right">
                         <p class="control">
-                            <input type="submit" class="button is-warning" value="Wire Me To It Please?">
+                            <button type="submit" class="button is-warning">Wire Me To It Please?</button>
                         </p>
                     </div>
                 </form>
@@ -45,10 +52,10 @@
                     Create Chat
                 </h2>
                 <hr>
-                <form action="create" method="POST">
+                <form action="/chat_create.php" method="POST">
                     <div class="field is-fullwidth">
                         <p class="control is-fullwidth">
-                            <input type="submit" class="button is-warning is-fullwidth" value="Create My Own Chatroom NOW!">
+                            <button type="submit" class="button is-warning is-fullwidth">Create My Own Chatroom NOW!</button>
                         </p>
                     </div>
                 </form>

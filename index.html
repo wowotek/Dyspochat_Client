@@ -6,20 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentication</title>
 
+    <script src="jquery.js" type="text/javascript"></script>
     <script defer src="fontawesome.js"></script>
     <link rel="stylesheet" href="bulma.css">
-    <script src="jquery.js" type="text/javascript"></script>
 </head>
 <script>
     const regUrl = "localhost:2345/user/registration"
     const logUrl = "localhost:2345/user/login"
-
-    $(document).ready(function(){
-        $("#register_button").click(function(){
-            console.log("Hello World");
-        });
-    });
 </script>
+
 <body style="margin-left: 10%; margin-right: 10%;">
     <figure class="image" style="margin-left: 25%; margin-right: 25%; margin-bottom: 15px; margin-top: 15px">
         <img src="Logo.png" style=" border-radius: 25px;">
@@ -31,36 +26,40 @@
                     Registration
                 </h2>
                 <hr>
-                <div class="field">
-                    <label class="label has-text-warning is-4">Username</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input has-background-grey has-text-white" type="text" minlength="6" maxlength="16"
-                            size="16" pattern="[A-Za-z0-9]{6,16}" name="reg_username" id="reg_username">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
-                        </span>
+                <form action="/user_registration.php" method="POST">
+                    <div class="field">
+                        <label class="label has-text-warning is-4">Username</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input has-background-grey has-text-white" type="text" minlength="6"
+                                maxlength="16" size="16" pattern="[A-Za-z0-9]{6,16}" name="reg_username"
+                                id="reg_username">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label has-text-warning is-4">Secure Password</label>
-                    <p class="control has-icons-left">
-                        <input class="input has-background-grey has-text-white" type="password"
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" name="reg_password" id="reg_password">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
-                        </span>
-                        <p class="help is-danger">Must contain at least one number and one uppercase and lowercase
-                            letter, and at least 8 or more characters</p>
-                    </p>
-                </div>
-                <br>
+                    <div class="field">
+                        <label class="label has-text-warning is-4">Secure Password</label>
+                        <p class="control has-icons-left">
+                            <input class="input has-background-grey has-text-white" type="password"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" name="reg_password"
+                                id="reg_password">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <p class="help is-danger">Must contain at least one number and one uppercase and lowercase
+                                letter, and at least 8 or more characters</p>
+                        </p>
+                    </div>
+                    <br>
 
-                <div class="field has-addons has-addons-right">
-                    <p class="control">
-                        <button type="submit" class="button is-danger" id="register_button">Sign Me Up</button>
-                    </p>
-                </div>
+                    <div class="field has-addons has-addons-right">
+                        <p class="control">
+                            <button type="submit" class="button is-danger" id="register_button">Sign Me Up</button>
+                        </p>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="column">
@@ -69,34 +68,38 @@
                     Login
                 </h2>
                 <hr>
-                <div class="field">
-                    <label class="label has-text-warning is-4">Username</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input has-background-grey has-text-white" type="text" minlength="6" maxlength="16" size="16" pattern="[A-Za-z0-9]{6,16}" name="log_username">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
-                        </span>
+                <form action="/user_login.php" method="POST">
+                    <div class="field">
+                        <label class="label has-text-warning is-4">Username</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input has-background-grey has-text-white" type="text" minlength="6"
+                                maxlength="16" size="16" pattern="[A-Za-z0-9]{6,16}" name="log_username">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label has-text-warning is-4">Password</label>
-                    <p class="control has-icons-left">
-                        <input class="input has-background-grey has-text-white" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" name="log_password">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
-                        </span>
-                        <p class="help is-danger">Must contain at least one number and one uppercase and lowercase
-                            letter, and at least 8 or more characters</p>
-                    </p>
-                </div>
-                <br>
+                    <div class="field">
+                        <label class="label has-text-warning is-4">Password</label>
+                        <p class="control has-icons-left">
+                            <input class="input has-background-grey has-text-white" type="password"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" name="log_password">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <p class="help is-danger">Must contain at least one number and one uppercase and lowercase
+                                letter, and at least 8 or more characters</p>
+                        </p>
+                    </div>
+                    <br>
 
-                <div class="field has-addons has-addons-right">
-                    <p class="control">
-                        <button type="submit" class="button is-danger" id="login_button">Login</button>
-                    </p>
-                </div>
+                    <div class="field has-addons has-addons-right">
+                        <p class="control">
+                            <button type="submit" class="button is-danger" id="login_button">Login</button>
+                        </p>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
