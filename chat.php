@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html class="has-background-grey-darker" lang="en">
-<?php session_start(); ?>
+<?php session_start();
+
+$ch = curl_init();
+$field = array(
+    "room_id" => $_SESSION["chatroom_room_id"]
+);
+
+curl_setopt($ch, CURLOPT_URL,"http://34.101.203.39:2345/chat/get_room_recipient");
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($field));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$server_output = json_decode(curl_exec($ch), true);
+
+curl_close ($ch);
+
+$recipient = $server_output["recipients"]
+
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -37,14 +55,14 @@
                 </figure>
                 <hr style="margin-bottom: 5px; margin-right: 6px; margin-left: 6px; background-color: black">
                 <h3 class="title is-3 has-text-centered has-text-warning" style="margin-bottom: 15px">Recipients</h3>
-                <div class="box" style="margin-bottom: 15px; margin-right: 10px; margin-left: 10px; padding: 3%">
-                    <span class="icon is-small is-left" style="margin-right: 5px;"><i class="fas fa-user"></i></span>
-                    <?php echo($_SESSION["user_name"]); ?>
-                </div>
-                <div class="box" style="margin-right: 10px; margin-left: 10px; padding: 3%">
-                    <span class="icon is-small is-left" style="margin-right: 5px;"><i class="fas fa-user"></i></span>
-                    {recipient-other}
-                </div>
+                <?php
+                foreach($recipient as $i){
+                    echo('<div class="box" style="margin-bottom: 15px; margin-right: 10px; margin-left: 10px; padding: 3%">');
+                    echo('<span class="icon is-small is-left" style="margin-right: 5px;"><i class="fas fa-user"></i></span>');
+                    echo($i['username']);
+                    echo('</div>');
+                }
+                ?>
                 <hr style="margin-right: 6px; margin-left: 6px; background-color: black">
                 <h3 class="title is-3 has-text-centered has-text-warning" style="margin-bottom: 15px">Session ID</h3>
                 <p class="has-background-white has-text-centered" style="text-align: center"><i><?php echo($_SESSION["chatroom_room_id"]); ?></i></p>
