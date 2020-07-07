@@ -1,4 +1,5 @@
 <?php
+include '__config.php';
 
 $ch = curl_init();
 
@@ -7,7 +8,7 @@ $field = array(
     "reg_password" => $_POST["reg_password"]
 );
 
-curl_setopt($ch, CURLOPT_URL,"http://34.101.203.39:2345/user/registration");
+curl_setopt($ch, CURLOPT_URL, $host . "/user/registration");
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($field));
 
@@ -23,9 +24,6 @@ $server_output = curl_exec($ch);
 curl_close ($ch);
 
 if($server_output["act_status"]) {
-    session_start();
-    $_SESSION["user_id"] = $server_output["user"]["id"];
-    $_SESSION["user_name"] = $server_output["user"]["username"];
     header('Location: /');
     exit();
 }

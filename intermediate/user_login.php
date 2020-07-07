@@ -1,4 +1,5 @@
 <?php
+include '__config.php';
 
 $ch = curl_init();
 
@@ -7,7 +8,7 @@ $field = array(
     "log_password" => $_POST["log_password"]
 );
 
-curl_setopt($ch, CURLOPT_URL,"http://34.101.203.39:2345/user/login");
+curl_setopt($ch, CURLOPT_URL, $host . "/user/login");
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($field));
 
