@@ -59,7 +59,20 @@ $recipient = $server_output["recipients"];
     </style>
 </head>
 <body style="height: 100vh" onload="register()">
+
+    <div class="box has-background-black navbar-end navbar-item">
+        <h4 class="title is-4 has-text-centered has-text-white"></h4>
+
+        <div class="buttons">
+            <a class="button is-primary" href="">
+                Logout
+            </a>
+        </div>
+        
+    </div>
+
     <div class="columns" style="margin-left: 1%; margin-right: 1%; margin-top: 0.5%">
+        
         <div class="column is-one-quarter">
             <div class="box has-background-grey" style="height: 96vh; padding: 0; box-shadow: 0 0 5px 5px yellow;">
                 <figure class="image">
@@ -67,7 +80,7 @@ $recipient = $server_output["recipients"];
                 </figure>
                 <hr style="margin-bottom: 5px; margin-right: 6px; margin-left: 6px; background-color: black">
                 <h3 class="title is-3 has-text-centered has-text-warning" style="margin-bottom: 15px">Recipients</h3>
-                <?php
+                 <?php
                 foreach($recipient as $i){
                     echo('<div class="box" style="margin-bottom: 15px; margin-right: 10px; margin-left: 10px; padding: 3%">');
                     echo('<span class="icon is-small is-left" style="margin-right: 5px;"><i class="fas fa-user"></i></span>');

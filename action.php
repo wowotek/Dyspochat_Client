@@ -14,9 +14,16 @@
 session_start();
 ?>
 
-<body style="margin-left: 10%; margin-right: 10%;">
-    <div class="box has-background-black">
+
+    <div class="box has-background-black navbar-end navbar-item">
         <h4 class="title is-4 has-text-centered has-text-white"><?php echo($_SESSION["user_name"]); ?></h4>
+
+        <div class="buttons">
+            <a class="button is-primary" href="">
+                Logout
+            </a>
+        </div>
+
     </div>
     <div class="columns" style="transform: translate(0%, 110%)">
         <div class="column">
@@ -25,8 +32,9 @@ session_start();
                     Join Chat
                 </h2>
                 <hr>
-                <?php
-                ?>
+                <!-- <?php
+                ?> -->
+
                 <form action="/intermediate/chat_join.php" method="POST">
                     <div class="field">
                         <label class="label has-text-warning is-4">Chat Session-ID</label>
