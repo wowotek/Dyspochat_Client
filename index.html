@@ -1,102 +1,413 @@
 <!DOCTYPE html>
-<html class="has-background-grey-darker" lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentication</title>
+    <title>Dyspochat</title>
+    <script src="/rsc/fontawesome.js"></script>
+    <link rel="stylesheet" href="/rsc/bulma.css">
+    <style>
+        @keyframes menu_incoming_frames {
+            from {
+                opacity: 0;
+                transform: translate(0%, 150%);
+            }
 
-    <script defer src="rsc/fontawesome.js"></script>
-    <link rel="stylesheet" href="rsc/bulma.css">
+            75% {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0%, 0);
+            }
+        }
+
+        @keyframes menu_incoming_alternate_frames {
+            from {
+                opacity: 0;
+                transform: translate(0%, -150%);
+            }
+
+            75% {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0%, 0);
+            }
+        }
+
+        @keyframes menu_outgoing_frames {
+            0% {
+                opacity: 1;
+                transform: translate(0%, 0);
+            }
+
+            25% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(0%, -150%);
+            }
+        }
+
+        @keyframes menu_outgoing_alternate_frames {
+            0% {
+                opacity: 1;
+                transform: translate(0%, 0);
+            }
+
+            25% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(0%, 150%);
+            }
+        }
+
+        .menu_incoming {
+            opacity: 1;
+            animation-name: menu_incoming_frames;
+            animation-duration: 0.4s;
+        }
+
+        .menu_incoming_alternate {
+            opacity: 1;
+            animation-name: menu_incoming_alternate_frames;
+            animation-duration: 0.4s;
+        }
+
+        .menu_outgoing {
+            opacity: 0;
+            animation-name: menu_outgoing_frames;
+            animation-duration: 0.4s;
+        }
+
+        .menu_outgoing_alternate {
+            opacity: 0;
+            animation-name: menu_outgoing_alternate_frames;
+            animation-duration: 0.4s;
+        }
+
+        .menu_disabled {
+            display: none;
+        }
+    </style>
 </head>
-<body style="margin-left: 10%; margin-right: 10%;">
-    <figure class="image" style="margin-left: 25%; margin-right: 25%; margin-bottom: 15px; margin-top: 15px">
-        <img src="Logo.png" style=" border-radius: 25px;">
-    </figure>
-    <div class="columns">
-        <div class="column">
-            <div class="box" style="background-color: black">
-                <h2 class="title has-text-centered has-text-warning">
-                    Registration
-                </h2>
-                <hr>
-                <form action="/intermediate/user_registration.php" method="POST">
-                    <div class="field">
-                        <label class="label has-text-warning is-4">Username</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input class="input has-background-grey has-text-white" type="text" minlength="6"
-                                maxlength="16" size="16" pattern="[A-Za-z0-9]{6,16}" name="reg_username"
-                                id="reg_username">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
-                            </span>
-                        </div>
-                    </div>
 
-                    <div class="field">
-                        <label class="label has-text-warning is-4">Secure Password</label>
-                        <p class="control has-icons-left">
-                            <input class="input has-background-grey has-text-white" type="password"
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" name="reg_password"
-                                id="reg_password">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                            <p class="help is-danger">Must contain at least one number and one uppercase and lowercase
-                                letter, and at least 8 or more characters</p>
-                        </p>
-                    </div>
-                    <br>
-
-                    <div class="field has-addons has-addons-right">
-                        <p class="control">
-                            <button type="submit" class="button is-danger" id="register_button">Sign Me Up</button>
-                        </p>
-                    </div>
-                </form>
+<body class="has-background-grey">
+    <nav class="navbar is-dark is-transparent" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand" style="padding: 0; margin: 5px">
+                <img src="/rsc/Logo.png" alt="Logo" width="200" height="">
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="navbar-start">
+                <a class="navbar-item" href="/">
+                    Home
+                </a>
+                <a class="navbar-item" href="/about">
+                    About
+                </a>
+                <a class="navbar-item" href="/support">
+                    Help & Support
+                </a>
             </div>
         </div>
-        <div class="column">
-            <div class="box" style="background-color: black">
-                <h2 class="title has-text-centered has-text-warning">
-                    Login
-                </h2>
-                <hr>
-                <form action="/intermediate/user_login.php" method="POST">
-                    <div class="field">
-                        <label class="label has-text-warning is-4">Username</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input class="input has-background-grey has-text-white" type="text" minlength="6"
-                                maxlength="16" size="16" pattern="[A-Za-z0-9]{6,16}" name="log_username">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
-                            </span>
+    </nav>
+    <section class="hero is-medium is-light is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <div class="container" style="padding-top: 25%; padding-bottom: 25%">
+                            <h1 class="title">
+                                Chat In Secretion, No Worries.
+                            </h1>
+                            <h2 class="subtitle">
+                                Dyspochat is fast, secure, disposable chat service, no registration, no tracking !
+                            </h2>
+                            <div>
+                                <div class="field has-addons" id="start_chatting">
+                                    <p class="control">
+                                        <button class="button is-warning" onclick="hero_start_chatting()">
+                                            Start Chatting
+                                        </button>
+                                    </p>
+                                    <p class="control">
+                                        <a class="button is-info is-outlined is-static">
+                                            Download (Coming Soon)
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="menu_disabled" id="start_chatting_menu">
+                                    <p class="control">
+                                        <button class="button is-info">
+                                            Create Chatroom
+                                        </button>
+                                    </p>
+                                    <p class="control">
+                                        <a class="button is-success" onclick="join_chatroom_menu()">
+                                            Join Chatroom
+                                        </a>
+                                    </p>
+                                    <p class="control">
+                                        <button class="button is-warning" onclick="start_chatting_menu_back()">
+                                            Back
+                                        </button>
+                                    </p>
+                                </div>
+                                <form action="" method=POST class="menu_disabled" id="join_room_fields">
+                                    <p class="control">
+                                        <button class="button is-black is-static">
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-key"></i>
+                                            </span>
+                                        </button>
+                                    </p>
+                                    <p class="control">
+                                        <input class="input" type="text" placeholder="Chatroom ID" required>
+                                    </p>
+                                    <p class="control">
+                                        <button class="button is-success">
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </span>
+                                            <span>Join Room</span>
+                                        </button>
+                                    </p>
+                                    <p class="control">
+                                        <a class="button is-warning" onclick="join_chatroom_back()">
+                                            Back
+                                        </a>
+                                    </p>
+                                </form>
+                                <p>No login or registration required.</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="field">
-                        <label class="label has-text-warning is-4">Password</label>
-                        <p class="control has-icons-left">
-                            <input class="input has-background-grey has-text-white" type="password"
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" name="log_password">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                            <p class="help is-danger">Must contain at least one number and one uppercase and lowercase
-                                letter, and at least 8 or more characters</p>
-                        </p>
+                    <div class="column is-one-fifth"></div>
+                    <div class="column">
+                        <figure class="image is-square">
+                            <img src="https://bulma.io/images/placeholders/256x256.png">
+                        </figure>
                     </div>
-                    <br>
-
-                    <div class="field has-addons has-addons-right">
-                        <p class="control">
-                            <button type="submit" class="button is-danger" id="login_button">Login</button>
-                        </p>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+    <section class="hero is-medium is-dark is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h2 class="subtitle is-6 has-text-centered">
+                    Our Feature
+                </h2>
+                <h1 class="title has-text-centered">
+                    Yes. Simple, With A Bonus!
+                </h1>
+                <div class="columns">
+                    <div class="column">
+                        <div class="box has-background-dark">
+                            <figure class="image is-square">
+                                <img src="https://bulma.io/images/placeholders/128x128.png">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="container" style="transform-origin: top left; transform: scale(90%)">
+                            <a class="box media has-background-dark">
+                                <figure class="media-left" style="padding: 0; margin-bottom: -7px;">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                </figure>
+                                <div class="media-content">
+                                    <h1 class="title is-5 has-text-white"><i class="has-text-primary">Military Grade</i>
+                                        Security. No Kidding!</h1>
+                                    <span class="subtitle is-6 has-text-white">
+                                        <p style="font-size: small;">- Chat privately without worries anyone (including
+                                            us) would collect or spoof
+                                            your secret messages.</p>
+                                        <p style="font-size: small;">- We are and will not storing, collecting any data
+                                            from you.</p>
+                                    </span>
+                                </div>
+                            </a>
+                            <a class="box media has-background-dark">
+                                <figure class="media-left" style="padding: 0; margin-bottom: -7px;">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                </figure>
+                                <div class="media-content">
+                                    <h1 class="title is-5 has-text-white">Blazing <i class="has-text-danger">Fast</i>.
+                                        Like.. <i class="has-text-warning">Relativistic</i> Speed.</h1>
+                                    <span class="subtitle is-6 has-text-white">
+                                        <p style="font-size: small;">- Dyspochat created with <i
+                                                class="has-text-danger">bleeding-edge</i>
+                                            communication technology.<sub class="has-text-grey-light"><i>(warning: no
+                                                    one was bleeding while developing this service)</i></sub></p>
+                                        <p style="font-size: small;">- Create and join chatroom without you from even
+                                            noticing. even from us.</p>
+                                        <p style="font-size: small;">- Message sent with only one-click away. but
+                                            without away.</p>
+                                    </span>
+                                </div>
+                            </a>
+                            <a class="box media has-background-dark">
+                                <figure class="media-left" style="padding: 0; margin-bottom: -7px;">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                </figure>
+                                <div class="media-content">
+                                    <h1 class="title is-5 has-text-white">Your <span
+                                            class="has-text-info">Privacy</span>, Your <span
+                                            class="has-text-info">Choice</span></h1>
+                                    <span class="subtitle is-6 has-text-white" style="font-size: small;">
+                                        <p>when you create chatroom, you can choose either all of the recipients can
+                                            join Anonymously, or should provide a pseudonym</p>
+                                    </span>
+                                </div>
+                            </a>
+                            <a class="box media has-background-dark">
+                                <figure class="media-left" style="padding: 0; margin-bottom: -7px;">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                </figure>
+                                <div class="media-content">
+                                    <h1 class="title is-5 has-text-white">Quick! <span class="has-text-danger">Shred</span> It All!</h1>
+                                    <span class="subtitle is-6 has-text-white">
+                                        <p style="font-size: small;">With a single button, you can <b>DELETE</b>, <s>s H
+                                                r E d</s>, <i class="has-text-warning">burn</i>, your messages. and it
+                                            would be gone.
+                                        </p>
+                                        <br />
+                                        <p style="font-size: small;">Forever.</p>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-medium is-light is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <h1 class="title is-2">What Are You Waiting For ?</h1>
+                        <h2 class="subtitle is-4">You got nothing to lose!</h2>
+                    </div>
+                    <div class="column">
+                        <button class="button is-warning" style="margin-left: 50%; padding: 8%; transform: translate(-40%, 0)">
+                            Go To App
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer has-background-dark has-text-white">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <figure class="image">
+                        <img src="/rsc/Logo.png" alt="Logo" style="width: 300px;">
+                    </figure>
+                    <span style="position: absolute; bottom: 0;">
+                        <small>© 2005-2020 Kuycompany. All rights reserved.</small>
+                    </span>
+                </div>
+                <div class="column is-one-fifth">
+                    <h1 class="title is-5 has-text-white mb-5">Help and Support</h1>
+                    <ul>
+                        <li class="my-3"><a href="/documentation/">Documentation</a></li>
+                        <li class="my-3"><a href="/documentation/getting-started/">Getting Started</a></li>
+                        <li class="my-3"><a href="/documentation/faq">FAQ</a></li>
+                        <li class="my-3"><a href="/support/common-problems">Common Problems</a></li>
+                        <li class="my-3"><a href="/support/community">Community Support</a></li>
+                    </ul>
+                </div>
+                <div class="column is-one-fifth">
+                    <h1 class="title is-5 has-text-white mb-5">About Us</h1>
+                    <ul>
+                        <li class="my-3"><a href="/about/dyspochat">About Dyspochat</a></li>
+                        <li class="my-3"><a href="/about/team">Our Team</a></li>
+                        <li class="my-3"><a href="/about/contribute">Contribute</a></li>
+                        <li class="my-3"><a href="/about/legal">Legal & Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h1 class="title is-5 has-text-white mb-5">Contact Us!</h1>
+                    <form action="">
+                        <div class="field has-addons">
+                            <p class="control">
+                                <input class="input" type="password" placeholder="Subject, What is this about?">
+                            </p>
+                            <p class="control">
+                                <button type="submit" class="button is-warning">
+                                    >
+                                </button>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
+<script>
+    var start_chatting_state = document.getElementById("start_chatting");
+    var start_chatting_menu_state = document.getElementById("start_chatting_menu");
+    var join_room_fields_state = document.getElementById("join_room_fields");
 
+    function refresh_state() {
+        start_chatting_state = document.getElementById("start_chatting");
+        start_chatting_menu_state = document.getElementById("start_chatting_menu");
+        join_room_fields_state = document.getElementById("join_room_fields");
+    }
+
+    function hero_start_chatting() {
+        refresh_state();
+        setTimeout(() => {
+            start_chatting_state.className = "menu_disabled";
+            start_chatting_menu_state.className = "field has-addons menu_incoming";
+        }, 50);
+        start_chatting_state.className = "field has-addons menu_outgoing";
+    }
+
+    function join_chatroom_menu() {
+        refresh_state();
+        setTimeout(() => {
+            start_chatting_menu_state.className = "menu_disabled";
+            join_room_fields_state.className = "field has-addons menu_incoming";
+        }, 50);
+        start_chatting_menu_state.className = "field has-addons menu_outgoing";
+    }
+
+    function start_chatting_menu_back() {
+        refresh_state();
+        setTimeout(() => {
+            start_chatting_menu_state.className = "menu_disabled";
+            start_chatting_state.className = "field has-addons menu_incoming_alternate";
+        }, 50);
+        start_chatting_menu_state.className = "field has-addons menu_outgoing_alternate";
+    }
+
+    function join_chatroom_back() {
+        refresh_state();
+        setTimeout(() => {
+            join_room_fields_state.className = "menu_disabled";
+            start_chatting_menu_state.className = "field has-addons menu_incoming_alternate";
+        }, 50);
+        join_room_fields_state.className = "field has-addons menu_outgoing_alternate";
+    }
+</script>
 </html>
