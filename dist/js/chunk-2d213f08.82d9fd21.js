@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d213f08"],{af8e:function(t,s,a){"use strict";a.r(s);var n=function(){var t=this,s=t.$createElement;t._self._c;return t._m(0)},c=[function(){var t=this,s=t.$createElement,a=t._self._c||s;return a("div",{staticClass:"aboutdyspochat"},[a("div",{staticClass:"columns"},[a("div",{staticClass:"column"}),a("div",{staticClass:"column"})])])}],e={name:"AboutDyspochat"},l=e,u=a("2877"),i=Object(u["a"])(l,n,c,!1,null,null,null);s["default"]=i.exports}}]);
+//# sourceMappingURL=chunk-2d213f08.82d9fd21.js.map
